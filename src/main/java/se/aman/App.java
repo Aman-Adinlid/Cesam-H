@@ -4,7 +4,7 @@ package se.aman;
 public class App {
 
     public static void main(String[] args) {
-        AddMessage addMessage = new AddMessage(133, "T800", "Skynet", "2022-09-09T11:57:11.9283614+02:00");
+        AddMessage addMessage = new AddMessage(137, "T800", "Skynet", "2022-09-09T11:57:11.9283614+02:00");
         System.out.println(addMessage.getFlowInstanceID());
         System.out.println(addMessage.getExternalID());
         System.out.println(addMessage.getExternalIDSystem());

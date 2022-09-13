@@ -22,9 +22,9 @@ public class App {
         map.put("addMessage_message_attachments_size", String.valueOf(attachments.getSize()));
 
         Attachments attachments1 = new Attachments("YmFuYW4=", "frukt.txt", 12);
-        map.put("addMessage_message_attachments_encodedData_2", attachments1.getEncodedData());
-        map.put("addMessage_message_attachments_filename_2", attachments1.getFilename());
-        map.put("addMessage_message_attachments_size_2", String.valueOf(attachments1.getSize()));
+        map.put("addMessage_message_attachments_encodedData2", attachments1.getEncodedData());
+        map.put("addMessage_message_attachments_filename2", attachments1.getFilename());
+        map.put("addMessage_message_attachments_size2", String.valueOf(attachments1.getSize()));
 
         Message message = new Message("Detta är ett testmeddelande.", "TestUser001", false, LocalDateTime.of(2022, Month.SEPTEMBER, 9, 11, 57, 11, 9283614));
         map.put("addMessage_message_message", message.getMessage());

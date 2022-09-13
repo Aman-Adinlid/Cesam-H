@@ -34,7 +34,7 @@ public class Attachments {
         return size;
     }
 
-    public void setSize(int size) {
+    public void setSize() {
         this.size = size;
     }
 

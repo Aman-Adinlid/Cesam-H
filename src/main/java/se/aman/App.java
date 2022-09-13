@@ -1,60 +1,60 @@
 package se.aman;
 
 
-import java.util.Stack;
+import java.time.*;
+import java.util.*;
+import java.util.stream.Stream;
 
 public class App {
 
     public static void main(String[] args) {
-        AddMessage addMessage = new AddMessage(137, "T800", "Skynet", "2022-09-09T11:57:11.9283614+02:00");
-        System.out.println(addMessage.getFlowInstanceID());
-        System.out.println(addMessage.getExternalID());
-        System.out.println(addMessage.getExternalIDSystem());
-        System.out.println(addMessage.getMessageAdded());
+
+        Map<String, String> map = new HashMap<>();
+        AddMessage addMessage = new AddMessage("1337", new ExternalID("T800", "Skynet"));
+        map.put("addMessage_flowInstanceID", addMessage.getFlowInstanceID());
+        map.put("addMessage_externalID_ID", addMessage.getExternalID().getId());
+        map.put("addMessage_externalID_System", addMessage.getExternalID().getSystem());
 
 
         Attachments attachments = new Attachments("a2FuZWxidWxsZQ==", "bulle.txt", 11);
-        System.out.println(attachments.getEncodedData());
-        System.out.println(attachments.getFilename());
-        System.out.println(attachments.getSize());
+        map.put("addMessage_message_attachments_encodedData", attachments.getEncodedData());
+        map.put("addMessage_message_attachments_filename", attachments.getFilename());
+        map.put("addMessage_message_attachments_size", String.valueOf(attachments.getSize()));
 
         Attachments attachments1 = new Attachments("YmFuYW4=", "frukt.txt", 12);
-        System.out.println(attachments1.getEncodedData());
-        System.out.println(attachments1.getFilename());
-        System.out.println(attachments1.getSize());
+        map.put("addMessage_message_attachments_encodedData_2", attachments1.getEncodedData());
+        map.put("addMessage_message_attachments_filename_2", attachments1.getFilename());
+        map.put("addMessage_message_attachments_size_2", String.valueOf(attachments1.getSize()));
 
-
-        Message message = new Message("Detta är ett testmeddelande.", "TestUser001", false);
-        System.out.println(message.getMessage());
-        System.out.println(message.getUserId());
-        System.out.println(message.isReadReceiptEnabled());
-
+        Message message = new Message("Detta är ett testmeddelande.", "TestUser001", false, LocalDateTime.of(2022, Month.SEPTEMBER, 9, 11, 57, 11, 9283614));
+        map.put("addMessage_message_message", message.getMessage());
+        map.put("addMessage_message_userID", message.getUserId());
+        map.put("addMessage_message_readReceiptEnabled", String.valueOf(message.isReadReceiptEnabled()));
+        map.put("addMessage_message_added", String.valueOf(message.getAdded()));
 
         Principal principal = new Principal("Dwight Shrute", "dwishu");
-        System.out.println(principal.getName());
-        System.out.println(principal.getUserId());
+        map.put("addMessage_principal_name", principal.getName());
+        map.put("addMessage_principal_userID", principal.getUserId());
 
-      /*  Stack stack = new Stack();
-        Stack<String> stack1 = new Stack<>();
-        System.out.println(stack.push(137));
-        System.out.println(stack1.push("T800"));
-        System.out.println(stack1.push("Skynet"));
-        System.out.println(stack1.push("2022-09-09T11:57:11.9283614+02:00"));
-        System.out.println(stack1.push("a2FuZWxidWxsZQ=="));
-        System.out.println(stack1.push("bulle.txt"));
-        System.out.println(stack.push(11));
-        System.out.println(stack1.push("YmFuYW4="));
-        System.out.println(stack1.push("frukt.txt"));
-        System.out.println(stack.push(12));
-        System.out.println(stack1.push("Detta är ett testmeddelande."));
-        System.out.println(stack1.push("TestUser001"));
-        System.out.println(stack1.empty());
-        System.out.println(stack1.push("Dwight Shrute"));
-        System.out.println(stack1.push("dwishu"));
-        System.out.println(stack.push(137));
-        System.out.println(stack1.push("T800"));
 
-*/
+        for (Map.Entry m : map.entrySet()) {
+            System.out.println("key: " + m.getKey() + " = " + "Value: " + m.getValue());
+
+        }
+      /*  Set<String> keys = map1.keySet();
+        for (String key : keys){
+            System.out.println(key + " = " +map1.get(key));
+
+       */
+        //for (Map.Entry pairEntry : map1.entrySet()){
+        //System.out.println(pairEntry.getKey() + "=" + pairEntry.getValue());
+
+     /*   Stream<String> stream = map1.values().stream();
+        stream.forEach((value) -> {
+            System.out.println(value);
+        });
+      */
+
     }
 }
 

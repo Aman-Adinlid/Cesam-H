@@ -1,52 +1,33 @@
 package se.aman;
 
+
 import java.util.Objects;
 
 public class AddMessage {
 
-    private int flowInstanceID;
-    private String externalID;
-    private String externalIDSystem;
-    private String messageAdded;
+    private String flowInstanceID;
+    private ExternalID externalID;
 
 
-    public AddMessage(int flowInstanceID, String externalID, String externalIDSystem, String messageAdded) {
+    public AddMessage(String flowInstanceID, ExternalID externalID) {
         this.flowInstanceID = flowInstanceID;
         this.externalID = externalID;
-        this.externalIDSystem = externalIDSystem;
-        this.messageAdded = messageAdded;
     }
 
-    public int getFlowInstanceID() {
+    public String getFlowInstanceID() {
         return flowInstanceID;
     }
 
-    public void setFlowInstanceID(int flowInstanceID) {
+    public void setFlowInstanceID(String flowInstanceID) {
         this.flowInstanceID = flowInstanceID;
     }
 
-    public String getExternalID() {
+    public ExternalID getExternalID() {
         return externalID;
     }
 
-    public void setExternalID(String externalID) {
+    public void setExternalID(ExternalID externalID) {
         this.externalID = externalID;
-    }
-
-    public String getExternalIDSystem() {
-        return externalIDSystem;
-    }
-
-    public void setExternalIDSystem(String externalIDSystem) {
-        this.externalIDSystem = externalIDSystem;
-    }
-
-    public String getMessageAdded() {
-        return messageAdded;
-    }
-
-    public void setMessageAdded(String messageAdded) {
-        this.messageAdded = messageAdded;
     }
 
     @Override
@@ -54,22 +35,19 @@ public class AddMessage {
         if (this == o) return true;
         if (!(o instanceof AddMessage)) return false;
         AddMessage that = (AddMessage) o;
-        return getFlowInstanceID() == that.getFlowInstanceID() && Objects.equals(getExternalID(), that.getExternalID()) && Objects.equals(getExternalIDSystem(), that.getExternalIDSystem()) && Objects.equals(getMessageAdded(), that.getMessageAdded());
+        return Objects.equals(getFlowInstanceID(), that.getFlowInstanceID()) && Objects.equals(getExternalID(), that.getExternalID());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getFlowInstanceID(), getExternalID(), getExternalIDSystem(), getMessageAdded());
+        return Objects.hash(getFlowInstanceID(), getExternalID());
     }
 
     @Override
     public String toString() {
         return "AddMessage{" +
-                "flowInstanceID=" + flowInstanceID +
-                ", externalID='" + externalID + '\'' +
-                ", externalIDSystem='" + externalIDSystem + '\'' +
-                ", messageAdded='" + messageAdded + '\'' +
+                "flowInstanceID='" + flowInstanceID + '\'' +
+                ", externalID=" + externalID +
                 '}';
     }
-
 }

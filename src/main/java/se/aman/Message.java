@@ -1,5 +1,6 @@
 package se.aman;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Message {
@@ -7,11 +8,13 @@ public class Message {
     private String message;
     private String userId;
     private boolean readReceiptEnabled;
+    private LocalDateTime added;
 
-    public Message(String message, String userId, boolean readReceiptEnabled) {
+    public Message(String message, String userId, boolean readReceiptEnabled, LocalDateTime added) {
         this.message = message;
         this.userId = userId;
         this.readReceiptEnabled = readReceiptEnabled;
+        this.added = added;
     }
 
     public String getMessage() {
@@ -38,17 +41,25 @@ public class Message {
         this.readReceiptEnabled = readReceiptEnabled;
     }
 
+    public LocalDateTime getAdded() {
+        return added;
+    }
+
+    public void setAdded(LocalDateTime added) {
+        this.added = added;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Message)) return false;
         Message message1 = (Message) o;
-        return isReadReceiptEnabled() == message1.isReadReceiptEnabled() && Objects.equals(getMessage(), message1.getMessage()) && Objects.equals(getUserId(), message1.getUserId());
+        return isReadReceiptEnabled() == message1.isReadReceiptEnabled() && Objects.equals(getMessage(), message1.getMessage()) && Objects.equals(getUserId(), message1.getUserId()) && Objects.equals(getAdded(), message1.getAdded());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getMessage(), getUserId(), isReadReceiptEnabled());
+        return Objects.hash(getMessage(), getUserId(), isReadReceiptEnabled(), getAdded());
     }
 
     @Override
@@ -57,6 +68,7 @@ public class Message {
                 "message='" + message + '\'' +
                 ", userId='" + userId + '\'' +
                 ", readReceiptEnabled=" + readReceiptEnabled +
+                ", added=" + added +
                 '}';
     }
 }
